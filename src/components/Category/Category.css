@@ -1,0 +1,9 @@
+.categoryHover:hover {
+  background-color: rgb(236, 236, 236);
+}
+.categoryHover {
+  margin: 0;
+  height: 31px;
+  display: flex;
+  align-items: center;
+}
