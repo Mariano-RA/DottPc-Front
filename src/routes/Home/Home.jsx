@@ -33,7 +33,7 @@ const imagenes = [
 
 const Home = () => {
   return (
-    <div className="w-100">
+    <div className="w-100 mb-5">
       <div className="d-flex flex-column align-items-center my-3">
         <p className="fs-1">Dott PC</p>
         <p>

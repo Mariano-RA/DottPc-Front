@@ -20,7 +20,7 @@ export const Card = ({ product }) => {
 
   return (
     <div
-      className="card mx-2 mb-2"
+      className="card mx-2 mb-2 bg-fondoClaro"
       style={{ width: "15em", minHeight: "15rem" }}
     >
       <div className="card-header d-flex p-0 justify-content-center">
@@ -30,19 +30,20 @@ export const Card = ({ product }) => {
       <div className="card-body">
         <div className="d-flex flex-column justify-content-between">
           <p
-            className="card-title fw-bold d-flex justify-content-center align-items-center"
+            className="card-title fw-bold d-flex justify-content-center align-items-center text-center"
             style={{ height: "5rem" }}
           >
             {product.producto}
           </p>
           <div className="card-text text-center">
-            <p>Precio en Efectivo: $ {product.precioEfectivo}</p>
+            <p className="m-0 p-0">Precio en Efectivo: </p>
+            <p>$ {product.precioEfectivo}</p>
           </div>
         </div>
 
         <div className="d-flex justify-content-center flex-column">
           <button
-            className="btn btn-outline-success"
+            className="btn btn-outline-verdedottclaro"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target={"#collapse_" + product.id}
@@ -52,7 +53,7 @@ export const Card = ({ product }) => {
             Ver mas info
           </button>
           <div className="collapse" id={"collapse_" + product.id}>
-            <div className="card card-body mt-2 p-0">
+            <div className="card card-body mt-2 p-0 bg-fondoClaro">
               {product.precioCuotas.map((tipoCuota) => (
                 <div
                   key={tipoCuota.CantidadCuotas}
@@ -62,7 +63,7 @@ export const Card = ({ product }) => {
                     <p className="m-0 p-0">Total:</p>
                     <p className="m-0 p-0">{tipoCuota.CantidadCuotas} de:</p>
                   </div>
-                  <div className="d-flex flex-column align-items-end w-75">
+                  <div className="d-flex flex-column align-items-end w-100">
                     <p className="m-0 p-0">$ {tipoCuota.Total}</p>
                     <p className="m-0 p-0">$ {tipoCuota.Cuota}</p>
                   </div>

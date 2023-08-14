@@ -5,10 +5,12 @@ import Pagination from "../../components/Pagination/Pagination";
 import Categorys from "../../components/Category/Categorys";
 
 const List = () => {
-  const { id } = useParams();
+  const { id, keyword } = useParams();
+
   const [productList, setProductList] = useState([]);
   const [pagina, setPagination] = useState(1);
   const [orderBy, setorderBy] = useState("");
+  const [ordenadoPor, setOrdenadoPor] = useState("");
 
   function handlePagination(action, cant) {
     switch (action) {
@@ -31,40 +33,20 @@ const List = () => {
   function handleOrder(action) {
     switch (action) {
       case "mayor":
-        setProductList(
-          productList
-            .slice()
-            .sort((a, b) => b.precioEfectivo - a.precioEfectivo)
-        );
-        setorderBy("Mayor precio");
+        setorderBy(action);
+        setOrdenadoPor("Mayor Precio");
         break;
       case "menor":
-        setProductList(
-          productList
-            .slice()
-            .sort((a, b) => a.precioEfectivo - b.precioEfectivo)
-        );
-        setorderBy("Menor precio");
+        setorderBy(action);
+        setOrdenadoPor("Menor Precio");
         break;
       case "nombreAsc":
-        setProductList(
-          productList
-            .slice()
-            .sort((a, b) =>
-              a.producto.toLowerCase().localeCompare(b.producto.toLowerCase())
-            )
-        );
-        setorderBy("Nombre Asc");
+        setorderBy(action);
+        setOrdenadoPor("Nombre, A - Z");
         break;
       case "nombreDesc":
-        setProductList(
-          productList
-            .slice()
-            .sort((a, b) =>
-              b.producto.toLowerCase().localeCompare(a.producto.toLowerCase())
-            )
-        );
-        setorderBy("Nombre Desc");
+        setorderBy(action);
+        setOrdenadoPor("Nombre, Z - A");
         break;
       default:
         break;
@@ -74,7 +56,7 @@ const List = () => {
   const getProductList = async () => {
     handleLoading(true);
     const resp = await fetch(
-      `https://dottpc-api.onrender.com/productos?&skip=${pagina}&take=20`
+      `https://dottpc-api.onrender.com/productos?&skip=${pagina}&take=20&orderBy=${orderBy}`
     );
     const data = await resp.json();
     setProductList(data);
@@ -84,7 +66,17 @@ const List = () => {
   const getProductListByCategory = async () => {
     handleLoading(true);
     const resp = await fetch(
-      `https://dottpc-api.onrender.com/productos/categoria?category=${id}&skip=${pagina}&take=20`
+      `https://dottpc-api.onrender.com/productos/categoria?category=${id}&skip=${pagina}&take=20&orderBy=${orderBy}`
+    );
+    const data = await resp.json();
+    setProductList(data);
+    handleLoading(false);
+  };
+
+  const getProductListByKeywords = async () => {
+    handleLoading(true);
+    const resp = await fetch(
+      `https://dottpc-api.onrender.com/productos/buscarPorPalabrasClaves?keywords=${keyword}`
     );
     const data = await resp.json();
     setProductList(data);
@@ -104,10 +96,12 @@ const List = () => {
   useEffect(() => {
     if (id != null && id != undefined) {
       getProductListByCategory();
+    } else if (keyword != null && keyword != undefined) {
+      getProductListByKeywords();
     } else {
       getProductList();
     }
-  }, [pagina, id]);
+  }, [pagina, id, keyword, orderBy]);
 
   return (
     <div className="w-100 d-flex">
@@ -119,7 +113,7 @@ const List = () => {
         id="loader"
       >
         <div
-          className="spinner-border text-success"
+          className="spinner-border text-verdeoscurodott"
           style={{ width: "3rem", height: "3rem" }}
           role="status"
         >
@@ -128,7 +122,7 @@ const List = () => {
       </div>
 
       <div
-        className="d-flex flex-wrap justify-content-center"
+        className="d-flex flex-wrap justify-content-center w-100"
         id="productsGrid"
       >
         <div
@@ -136,13 +130,13 @@ const List = () => {
           style={{ height: "50px" }}
         >
           <div className="d-flex align-items-center">
-            <p className="fw-bold fs-5 text-success m-0 p-0">
+            <p className="fw-bold fs-5 text-verdeoscurodott m-0 p-0">
               {id ? id : "Todos los productos"}
             </p>
           </div>
           <div className="d-flex align-items-center">
             <button
-              className="btn btn-success dropdown-toggle"
+              className="btn btn-outline-verdedottclaro dropdown-toggle"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -188,8 +182,8 @@ const List = () => {
                 </a>
               </li>
             </ul>
-            <p className="text-success p-0 m-0 ms-2">
-              {orderBy ? orderBy : "-"}
+            <p className="text-verdedottclaro p-0 m-0 ms-2">
+              {ordenadoPor ? ordenadoPor : "-"}
             </p>
           </div>
         </div>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import "./Category.css";
 
 const Categorys = () => {
   // const { state } = useContext(ContextGlobal);
@@ -17,11 +16,17 @@ const Categorys = () => {
 
   return (
     <div
-      className="d-flex flex-column rounded-3 border border-3 overflow-y-auto "
-      style={{ overflowX: "hidden", minWidth: "250px", height: "fit-content" }}
+      className="d-flex flex-column rounded-3 overflow-y-auto borderCategory"
+      style={{
+        overflowX: "hidden",
+        minWidth: "250px",
+        height: "fit-content",
+      }}
     >
-      <div>
-        <p className="text-center fs-5">Categorias</p>
+      <div className="d-flex align-items-center justify-content-center py-2">
+        <p className="text-center fs-5 m-0 p-0 text-verdeoscurodott">
+          Categorias
+        </p>
       </div>
       <div>
         {categorys?.map((category, index) => {
@@ -31,7 +36,7 @@ const Categorys = () => {
                 to={`/category/${category}`}
                 style={{ textDecoration: "none" }}
               >
-                <p className="text-success m-0 px-4 categoryHover">
+                <p className="text-verdedottclaro m-0 px-4 categoryHover">
                   {category}
                 </p>
               </Link>

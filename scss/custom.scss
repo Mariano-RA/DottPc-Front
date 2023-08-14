@@ -1,0 +1,40 @@
+// Custom.scss
+// Option A: Include all of Bootstrap
+
+// Include any default variable overrides here (though functions won't be available)
+
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+/* Standard bootstrap imports */
+
+$custom-colors: (
+  "verdedott": #142617,
+  "verdedottclaro": #386b41,
+  "fondoOscuro": #c9cfcf,
+  "fondoClaro": #f4f4f6,
+);
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+$input-color: #386b41 !important;
+$input-border-color: var($input-color) !important;
+
+$input-focus-border-color: tint-color(#386b41, 50%);
+$input-focus-color: #386b41 !important;
+$input-focus-box-shadow: 0 1px 1px #286d35 inset, 0 0 8px #286d35 !important;
+
+$input-placeholder-color: #386b41 !important;
+$input-plaintext-color: #386b41 !important;
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+p {
+  color: #142617 !important;
+}
+
+body {
+  background-color: #f4f4f6;
+}
+
+.borderCategory {
+  border: 1px #142617 solid;
+}
