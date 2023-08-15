@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 const Navbar = () => {
-  const [categorys, setCategorys] = useState([]);
   const [keywords, setKeywords] = useState("");
+
+  const storedData = localStorage.getItem("appState");
+  const parsedData = JSON.parse(storedData);
 
   const navigate = useNavigate();
 
@@ -11,24 +13,16 @@ const Navbar = () => {
     navigate(`/list/keywords/${keywords}`);
   }
 
-  const getCategorys = async () => {
-    const data = localStorage.getItem("categorys");
-    setCategorys(data.split(","));
-  };
-
   const handleInputChange = (e) => {
     setKeywords(e.target.value);
   };
 
-  useEffect(() => {
-    getCategorys();
-  }, []);
   return (
     <nav className="navbar navbar-expand-lg bg-fondoOscuro fixed-top py-3">
       <div className="container-fluid">
-        <a className="navbar-brand text-verdedott" href="/home">
+        <Link className="navbar-brand text-verdedott" to={"/home"}>
           DottPC
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -56,16 +50,16 @@ const Navbar = () => {
                 className="dropdown-menu overflow-y-auto overflow-x-hidden bg-fondoClaro "
                 style={{ height: "700px" }}
               >
-                {categorys?.map((category, index) => {
+                {parsedData.data?.map((category, index) => {
                   return category !=
                     "No existe una categoria para este producto" ? (
                     <li key={index}>
-                      <a
+                      <Link
                         className="dropdown-item text-verdedott"
-                        href={`/category/${category}`}
+                        to={`/category/${category}`}
                       >
                         {category}
-                      </a>
+                      </Link>
                     </li>
                   ) : (
                     ""
@@ -74,18 +68,18 @@ const Navbar = () => {
               </ul>
             </li>
             <li className="nav-item">
-              <a className="nav-link active text-verdedott" href="/list">
+              <Link className="nav-link active text-verdedott" to={"/list"}>
                 Productos
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a
+              <Link
                 className="nav-link active text-verdedott"
                 aria-current="page"
-                href="/contact"
+                to={"/cart"}
               >
                 Contacto
-              </a>
+              </Link>
             </li>
           </ul>
           <form className="d-flex" role="search" onSubmit={handleSubmit}>

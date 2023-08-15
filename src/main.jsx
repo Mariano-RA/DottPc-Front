@@ -2,9 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import Home from "./routes/Home/Home";
-import Detail from "./routes/Detail/Detail";
 import List from "./routes/List/List";
-import Contact from "./routes/Contact/Contact";
+import Cart from "./routes/Cart/Cart";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ContextProvider } from "./components/utils/global.context";
 
@@ -24,8 +23,7 @@ root.render(
           <Route path="/list" element={<List />} />
           <Route path="/list/keywords/:keyword" element={<List />} />
           <Route path="/category/:id" element={<List />} />
-          {/* <Route path="/product/:id" element={<Detail />} /> */}
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -1,22 +1,30 @@
 import { createContext, useReducer, useMemo, useEffect } from "react";
 
-export const initialState = { theme: "light", data: [] };
+export const initialState = { data: [], productCart: [] };
 
 export const ContextGlobal = createContext(undefined);
 
 function reducer(state, action) {
   switch (action.type) {
-    case "toggle_theme":
-      return {
-        ...state,
-        theme: state.theme === "light" ? "dark" : "light",
-      };
     case "set_data":
       return {
         ...state,
         data: action.data,
       };
-
+    case "add_cart":
+      return {
+        ...state,
+        productCart: [...state.productCart, action.payload],
+      };
+    case "remove_cart":
+      return {
+        ...state,
+        productCart: state.productCart.filter(
+          (item) => item.id !== action.payload
+        ),
+      };
+    case "set_state":
+      return action.state; // Para inicializar el estado desde el Local Storage
     default:
       return state;
   }
@@ -27,21 +35,39 @@ export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const getData = async () => {
-      const data = await fetch("./api/productos/categorias");
-      const convert = await data.json();
-      localStorage.setItem("categorys", convert);
+    const storedState = localStorage.getItem("appState");
+    if (storedState) {
+      dispatch({ type: "set_state", state: JSON.parse(storedState) });
+    }
+  }, []);
 
-      dispatch({
-        type: "set_data",
-        data: convert,
-      });
+  useEffect(() => {
+    localStorage.setItem("appState", JSON.stringify(state));
+  }, [state]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const response = await fetch("./api/productos/categorias");
+        const data = await response.json();
+        dispatch({ type: "set_data", data });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
     };
     getData();
   }, []);
 
+  const addCart = (item) => {
+    dispatch({ type: "add_cart", payload: item });
+  };
+
+  const removeCart = (itemId) => {
+    dispatch({ type: "remove_cart", payload: itemId });
+  };
+
   const value = useMemo(() => {
-    return { state, dispatch };
+    return { state, dispatch, addCart, removeCart };
   }, [state]);
 
   return (

@@ -1,9 +1,14 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import bootstrapBundleMin from "bootstrap/dist/js/bootstrap.bundle.min";
-import React, { useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { ContextGlobal } from "../utils/global.context";
 
 export const Card = ({ product }) => {
+  const { state, addCart, removeCart } = useContext(ContextGlobal);
+  const [IsHovered, setIsHovered] = useState(false);
+  const [IsSelected, setIsSelected] = useState(false);
+
   const popoverTriggerList = document.querySelectorAll(
     '[data-bs-toggle="popover"]'
   );
@@ -11,11 +16,46 @@ export const Card = ({ product }) => {
     (popoverTriggerEl) => new bootstrapBundleMin.Popover(popoverTriggerEl)
   );
 
+  function handleSelected() {
+    if (
+      state.productCart.filter((prodCart) => prodCart.id === product.id)
+        .length > 0
+    ) {
+      console.log("Entro");
+      setIsSelected(true);
+    } else {
+      console.log("No Entro");
+      setIsSelected(false);
+    }
+  }
+
+  function handleCart(product) {
+    if (
+      state.productCart.filter((prodCart) => prodCart.id === product.id)
+        .length > 0
+    ) {
+      removeCart(product.id);
+      setIsSelected(false);
+    } else {
+      addCart(product);
+      setIsSelected(true);
+    }
+  }
+
+  const handleHover = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
   useEffect(() => {
     var list = document.getElementsByClassName("show");
     for (let item of list) {
       item.classList.remove("show");
     }
+    handleSelected();
   }, [product]);
 
   return (
@@ -42,16 +82,57 @@ export const Card = ({ product }) => {
         </div>
 
         <div className="d-flex justify-content-center flex-column">
-          <button
-            className="btn btn-outline-verdedottclaro cardLetraMediana"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target={"#collapse_" + product.id}
-            aria-expanded="false"
-            id="btn_collapse"
-          >
-            Ver mas info
-          </button>
+          <div className="d-flex justify-content-evenly">
+            {!IsSelected ? (
+              <button
+                className="btn btn-outline-verdedottclaro"
+                type="button"
+                id="btn_cart"
+                onClick={() => handleCart(product)}
+                onMouseEnter={handleHover}
+                onMouseLeave={handleMouseLeave}
+              >
+                <img
+                  src={
+                    IsHovered
+                      ? "/icons/shop-cart-hover.png"
+                      : "/icons/shop-cart.png"
+                  }
+                  style={{ width: "30px" }}
+                  alt=""
+                />
+              </button>
+            ) : (
+              <button
+                className="btn btn-outline-rojodott"
+                type="button"
+                id="btn_cart"
+                onClick={() => handleCart(product)}
+                onMouseEnter={handleHover}
+                onMouseLeave={handleMouseLeave}
+              >
+                <img
+                  src={
+                    IsHovered
+                      ? "/icons/shop-delete-hover.png"
+                      : "/icons/shop-delete.png"
+                  }
+                  style={{ width: "30px" }}
+                  alt=""
+                />
+              </button>
+            )}
+            <button
+              className="btn btn-outline-verdedottclaro cardLetraMediana"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target={"#collapse_" + product.id}
+              aria-expanded="false"
+              id="btn_collapse"
+            >
+              Ver mas info
+            </button>
+          </div>
           <div className="collapse" id={"collapse_" + product.id}>
             <div className="card card-body mt-2 p-0 bg-fondoClaro">
               {product.precioCuotas.map((tipoCuota) => (

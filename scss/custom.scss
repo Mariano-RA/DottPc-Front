@@ -12,6 +12,7 @@ $custom-colors: (
   "verdedottclaro": #386b41,
   "fondoOscuro": #c9cfcf,
   "fondoClaro": #f4f4f6,
+  "rojodott": #9d2222,
 );
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
