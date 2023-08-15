@@ -16,7 +16,7 @@ const Categorys = () => {
 
   return (
     <div
-      className="d-flex flex-column rounded-3 overflow-y-auto borderCategory"
+      className="d-flex flex-column rounded-3 overflow-y-auto borderCategory ocultar"
       style={{
         overflowX: "hidden",
         minWidth: "250px",

@@ -56,7 +56,7 @@ const List = () => {
   const getProductList = async () => {
     handleLoading(true);
     const resp = await fetch(
-      `https://dottpc-api.onrender.com/productos?&skip=${pagina}&take=20&orderBy=${orderBy}`
+      `./api/productos?&skip=${pagina}&take=20&orderBy=${orderBy}`
     );
     const data = await resp.json();
     setProductList(data);
@@ -66,7 +66,7 @@ const List = () => {
   const getProductListByCategory = async () => {
     handleLoading(true);
     const resp = await fetch(
-      `https://dottpc-api.onrender.com/productos/categoria?category=${id}&skip=${pagina}&take=20&orderBy=${orderBy}`
+      `../api/productos/categoria?category=${id}&skip=${pagina}&take=20&orderBy=${orderBy}`
     );
     const data = await resp.json();
     setProductList(data);
@@ -76,7 +76,7 @@ const List = () => {
   const getProductListByKeywords = async () => {
     handleLoading(true);
     const resp = await fetch(
-      `https://dottpc-api.onrender.com/productos/buscarPorPalabrasClaves?keywords=${keyword}`
+      `../../api/productos/buscarPorPalabrasClaves?keywords=${keyword}`
     );
     const data = await resp.json();
     setProductList(data);

@@ -38,3 +38,16 @@ body {
 .borderCategory {
   border: 1px #142617 solid;
 }
+
+@media (min-width: 425px) {
+  .agregarMargin {
+    margin-top: 2rem;
+  }
+
+  .ocultar {
+    display: none !important;
+  }
+
+  .cardPipina {
+  }
+}

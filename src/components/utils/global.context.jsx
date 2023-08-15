@@ -28,11 +28,9 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     const getData = async () => {
-      const data = await fetch(
-        "https://dottpc-api.onrender.com/productos/categorias"
-      );
+      const data = await fetch("./api/productos/categorias");
       const convert = await data.json();
-      localStorage.setItem("categorys", convert)
+      localStorage.setItem("categorys", convert);
 
       dispatch({
         type: "set_data",

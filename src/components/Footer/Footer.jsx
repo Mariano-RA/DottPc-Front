@@ -14,7 +14,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="d-flex flex-column align-items-center justify-content-around">
-        <div className="fw-bold">
+        <div className="fw-bold agregarMargin">
           <p>RETIRO DE PEDIDOS:</p>
         </div>
         <div className="d-flex mb-3">
