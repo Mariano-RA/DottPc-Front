@@ -39,7 +39,7 @@ body {
   border: 1px #142617 solid;
 }
 
-@media (min-width: 425px) {
+@media (max-width: 450px) {
   .agregarMargin {
     margin-top: 2rem;
   }
@@ -48,6 +48,35 @@ body {
     display: none !important;
   }
 
+  .separarData {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .achicarLetra {
+    font-size: 1rem !important;
+  }
+
   .cardPipina {
+    width: 10rem !important;
+  }
+
+  .cardLetraChica {
+    font-size: 0.7rem !important;
+  }
+
+  .cardLetraMediana {
+    font-size: 0.9rem !important;
+  }
+
+  .mostrar {
+    display: block;
+  }
+  .ocultar {
+    display: none;
+  }
+
+  .agrandarPantalla {
+    width: 90% !important;
   }
 }

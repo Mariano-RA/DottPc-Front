@@ -126,11 +126,11 @@ const List = () => {
         id="productsGrid"
       >
         <div
-          className="dropdown w-100 d-flex justify-content-between mx-5 mb-3"
+          className="dropdown w-100 d-flex justify-content-between mx-5 mb-3 separarData"
           style={{ height: "50px" }}
         >
           <div className="d-flex align-items-center">
-            <p className="fw-bold fs-5 text-verdeoscurodott m-0 p-0">
+            <p className="fw-bold fs-5 text-verdeoscurodott m-0 p-0 achicarLetra">
               {id ? id : "Todos los productos"}
             </p>
           </div>

@@ -20,7 +20,7 @@ export const Card = ({ product }) => {
 
   return (
     <div
-      className="card mx-2 mb-2 bg-fondoClaro"
+      className="card mx-2 mb-2 bg-fondoClaro cardPipina"
       style={{ width: "15em", minHeight: "15rem" }}
     >
       <div className="card-header d-flex p-0 justify-content-center">
@@ -30,20 +30,20 @@ export const Card = ({ product }) => {
       <div className="card-body">
         <div className="d-flex flex-column justify-content-between">
           <p
-            className="card-title fw-bold d-flex justify-content-center align-items-center text-center"
+            className="card-title fw-bold d-flex justify-content-center align-items-center text-center cardLetraChica"
             style={{ height: "5rem" }}
           >
             {product.producto}
           </p>
           <div className="card-text text-center">
-            <p className="m-0 p-0">Precio en Efectivo: </p>
-            <p>$ {product.precioEfectivo}</p>
+            <p className="m-0 p-0 cardLetraMediana">Precio en Efectivo: </p>
+            <p className="cardLetraMediana">$ {product.precioEfectivo}</p>
           </div>
         </div>
 
         <div className="d-flex justify-content-center flex-column">
           <button
-            className="btn btn-outline-verdedottclaro"
+            className="btn btn-outline-verdedottclaro cardLetraMediana"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target={"#collapse_" + product.id}
@@ -59,13 +59,37 @@ export const Card = ({ product }) => {
                   key={tipoCuota.CantidadCuotas}
                   className="d-flex border border-success-subtle px-3 py-2 juistify-content-between"
                 >
-                  <div className="d-flex flex-column w-100">
-                    <p className="m-0 p-0">Total:</p>
-                    <p className="m-0 p-0">{tipoCuota.CantidadCuotas} de:</p>
+                  <div className="ocultar">
+                    <div className="d-flex flex-column w-100 ">
+                      <p className="m-0 p-0 cardLetraMediana fw-bold">Total:</p>
+                      <p className="m-0 p-0 cardLetraMediana fw-bold">
+                        {tipoCuota.CantidadCuotas} de:
+                      </p>
+                    </div>
+                    <div className="d-flex flex-column align-items-end w-100">
+                      <p className="m-0 p-0 cardLetraMediana">
+                        $ {tipoCuota.Total}
+                      </p>
+                      <p className="m-0 p-0 cardLetraMediana">
+                        $ {tipoCuota.Cuota}
+                      </p>
+                    </div>
                   </div>
-                  <div className="d-flex flex-column align-items-end w-100">
-                    <p className="m-0 p-0">$ {tipoCuota.Total}</p>
-                    <p className="m-0 p-0">$ {tipoCuota.Cuota}</p>
+                  <div className="mostrar">
+                    <div className="d-flex flex-column w-100">
+                      <p className="m-0 p-0 cardLetraMediana fw-bold">Total:</p>
+                      <p className="m-0 p-0 cardLetraMediana">
+                        $ {tipoCuota.Total}
+                      </p>
+                    </div>
+                    <div className="d-flex flex-column w-100">
+                      <p className="m-0 p-0 cardLetraMediana fw-bold">
+                        {tipoCuota.CantidadCuotas} de:
+                      </p>
+                      <p className="m-0 p-0 cardLetraMediana">
+                        $ {tipoCuota.Cuota}
+                      </p>
+                    </div>
                   </div>
                 </div>
               ))}
