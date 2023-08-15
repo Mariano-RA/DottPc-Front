@@ -76,7 +76,7 @@ const List = () => {
   const getProductListByKeywords = async () => {
     handleLoading(true);
     const resp = await fetch(
-      `../../api/productos/buscarPorPalabrasClaves?keywords=${keyword}&orderBy=${orderBy}`
+      `../../api/productos/buscarPorPalabrasClaves?keywords=${keyword}&skip=${pagina}&take=20&orderBy=${orderBy}`
     );
     const data = await resp.json();
     setProductList(data);
