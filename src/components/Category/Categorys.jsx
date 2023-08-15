@@ -1,9 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { ContextGlobal } from "../utils/global.context";
 
 const Categorys = () => {
-  const storedData = localStorage.getItem("appState");
-  const parsedData = JSON.parse(storedData);
+  const { state } = useContext(ContextGlobal);
+  const [categorys, setCategorys] = useState([]);
+
+  function handleCategorys() {
+    setCategorys(state.data);
+  }
+
+  useEffect(() => {
+    handleCategorys();
+  }, [state]);
 
   return (
     <div
@@ -20,7 +29,7 @@ const Categorys = () => {
         </p>
       </div>
       <div>
-        {parsedData.data?.map((category, index) => {
+        {categorys.map((category, index) => {
           return category != "No existe una categoria para este producto" ? (
             <div key={index}>
               <Link

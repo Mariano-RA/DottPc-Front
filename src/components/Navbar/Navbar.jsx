@@ -1,11 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ContextGlobal } from "../utils/global.context";
 
 const Navbar = () => {
   const [keywords, setKeywords] = useState("");
 
-  const storedData = localStorage.getItem("appState");
-  const parsedData = JSON.parse(storedData);
+  const { state } = useContext(ContextGlobal);
+  const [categorys, setCategorys] = useState([]);
+
+  function handleCategorys() {
+    setCategorys(state.data);
+  }
+
+  useEffect(() => {
+    handleCategorys();
+  }, [state]);
 
   const navigate = useNavigate();
 
@@ -50,7 +59,7 @@ const Navbar = () => {
                 className="dropdown-menu overflow-y-auto overflow-x-hidden bg-fondoClaro "
                 style={{ height: "700px" }}
               >
-                {parsedData.data?.map((category, index) => {
+                {categorys.map((category, index) => {
                   return category !=
                     "No existe una categoria para este producto" ? (
                     <li key={index}>
@@ -78,7 +87,7 @@ const Navbar = () => {
                 aria-current="page"
                 to={"/cart"}
               >
-                Contacto
+                Carrito
               </Link>
             </li>
           </ul>

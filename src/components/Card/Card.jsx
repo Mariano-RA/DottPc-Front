@@ -21,15 +21,13 @@ export const Card = ({ product }) => {
       state.productCart.filter((prodCart) => prodCart.id === product.id)
         .length > 0
     ) {
-      console.log("Entro");
       setIsSelected(true);
     } else {
-      console.log("No Entro");
       setIsSelected(false);
     }
   }
 
-  function handleCart(product) {
+  function handleCart() {
     if (
       state.productCart.filter((prodCart) => prodCart.id === product.id)
         .length > 0
@@ -88,7 +86,7 @@ export const Card = ({ product }) => {
                 className="btn btn-outline-verdedottclaro"
                 type="button"
                 id="btn_cart"
-                onClick={() => handleCart(product)}
+                onClick={() => handleCart()}
                 onMouseEnter={handleHover}
                 onMouseLeave={handleMouseLeave}
               >
@@ -107,7 +105,7 @@ export const Card = ({ product }) => {
                 className="btn btn-outline-rojodott"
                 type="button"
                 id="btn_cart"
-                onClick={() => handleCart(product)}
+                onClick={() => handleCart()}
                 onMouseEnter={handleHover}
                 onMouseLeave={handleMouseLeave}
               >
