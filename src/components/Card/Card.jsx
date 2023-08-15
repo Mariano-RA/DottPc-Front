@@ -59,7 +59,7 @@ export const Card = ({ product }) => {
                   key={tipoCuota.CantidadCuotas}
                   className="d-flex border border-success-subtle px-3 py-2 juistify-content-between"
                 >
-                  <div className="ocultar">
+                  <div className="ocultar d-flex w-100">
                     <div className="d-flex flex-column w-100 ">
                       <p className="m-0 p-0 cardLetraMediana fw-bold">Total:</p>
                       <p className="m-0 p-0 cardLetraMediana fw-bold">
@@ -75,7 +75,7 @@ export const Card = ({ product }) => {
                       </p>
                     </div>
                   </div>
-                  <div className="mostrar">
+                  <div className="mostrar" style={{ display: "none" }}>
                     <div className="d-flex flex-column w-100">
                       <p className="m-0 p-0 cardLetraMediana fw-bold">Total:</p>
                       <p className="m-0 p-0 cardLetraMediana">
