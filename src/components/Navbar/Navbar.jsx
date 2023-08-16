@@ -51,7 +51,7 @@ const Navbar = () => {
           DottPC
         </Link>
         <div
-          className="d-flex align-items-center agrandarContainerFlex mostrar"
+          className="agrandarContainerFlex mostrar"
           style={{ display: "none" }}
         >
           <Link
