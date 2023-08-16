@@ -69,7 +69,7 @@ export const Card = ({ product }) => {
         <div className="d-flex flex-column justify-content-between">
           <p
             className="card-title fw-bold d-flex justify-content-center align-items-center text-center "
-            style={{ height: "5rem" }}
+            style={{ height: "9rem" }}
           >
             {product.producto}
           </p>
