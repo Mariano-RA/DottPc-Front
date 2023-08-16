@@ -45,58 +45,54 @@ const CartCard = ({ product, subTotalProduct, removeFromArr }) => {
   }, [cantidad]);
 
   return (
-    <div
-      className="d-flex justify-content-between py-3 my-2 cartCardResponsive"
-      style={{ maxHeight: "8rem" }}
-    >
-      <div
-        className="d-flex align-items-center me-3 aumentarTamañoResponsive"
-        style={{ width: "250px" }}
-      >
+    <div className="d-flex justify-content-between py-3 my-2 flex-md-row flex-sm-column flex-column">
+      <div className="d-flex align-items-center me-3 ">
         <p className="m-0">{product.producto}</p>
       </div>
       <div
-        className="d-flex align-items-center me-2 ocultar "
+        className="d-flex align-items-center me-2 ocultar"
         style={{ width: "90px" }}
       >
         <p className="m-0">$ {product.precioEfectivo}</p>
       </div>
-      <div
-        className="d-flex align-items-center me-2 agregarMargin"
-        style={{ width: "60px" }}
-      >
-        <input
-          className="w-100 custom-input rounded-3"
-          type="number"
-          value={cantidad}
-          onChange={handleCantidad}
-        />
-      </div>
-      <div
-        className="d-flex align-items-center me-2 agregarMargin"
-        style={{ width: "90px" }}
-      >
-        <p className="m-0">$ {subtotal}</p>
-      </div>
-      <div className="d-flex align-items-center agregarMargin">
-        <button
-          className="btn btn-outline-rojodott"
-          type="button"
-          id="btn_cart"
-          onClick={() => handleCart()}
-          onMouseEnter={handleHover}
-          onMouseLeave={handleMouseLeave}
+      <div className="d-flex justify-content-between addMarginTop">
+        <div
+          className="d-flex align-items-center me-2"
+          style={{ width: "70px" }}
         >
-          <img
-            src={
-              IsHovered
-                ? "/icons/shop-delete-hover.png"
-                : "/icons/shop-delete.png"
-            }
-            style={{ width: "30px" }}
-            alt=""
+          <input
+            className="w-100 custom-input rounded-3"
+            type="number"
+            value={cantidad}
+            onChange={handleCantidad}
           />
-        </button>
+        </div>
+        <div
+          className="d-flex align-items-center me-2 "
+          style={{ width: "100px" }}
+        >
+          <p className="m-0">$ {subtotal}</p>
+        </div>
+        <div className="d-flex align-items-center ">
+          <button
+            className="btn btn-outline-rojodott"
+            type="button"
+            id="btn_cart"
+            onClick={() => handleCart()}
+            onMouseEnter={handleHover}
+            onMouseLeave={handleMouseLeave}
+          >
+            <img
+              src={
+                IsHovered
+                  ? "/icons/shop-delete-hover.png"
+                  : "/icons/shop-delete.png"
+              }
+              style={{ width: "30px" }}
+              alt=""
+            />
+          </button>
+        </div>
       </div>
     </div>
   );

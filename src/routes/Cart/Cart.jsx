@@ -59,15 +59,12 @@ const Cart = () => {
   return (
     <div className="w-100">
       <div className="my-3 pb-3">
-        <p className="fw-bold fs-3 text-verdeoscurodott m-0 p-0 achicarLetra">
+        <p className="fw-bold fs-3 text-verdeoscurodott m-0 p-0">
           Productos en el carrito:
         </p>
       </div>
-      <div className="d-flex justify-content-between convertirColumna">
-        <div
-          className="d-flex flex-column manageGrowResponsive"
-          style={{ flexGrow: "0.5" }}
-        >
+      <div className="d-flex flex-lg-row justify-content-around flex-md-column  flex-sm-column flex-column">
+        <div className="d-flex flex-column">
           {products.map((item, index) => (
             <div key={item.id}>
               {index == 0 ? <hr className="text-verdedott fs-4" /> : ""}

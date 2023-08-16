@@ -16,7 +16,7 @@ const Categorys = () => {
 
   return (
     <div
-      className="d-flex flex-column rounded-3 overflow-y-auto borderCategory ocultar"
+      className="d-flex flex-column rounded-3 overflow-y-auto ocultar"
       style={{
         overflowX: "hidden",
         minWidth: "250px",
@@ -36,9 +36,7 @@ const Categorys = () => {
                 to={`/category/${category}`}
                 style={{ textDecoration: "none" }}
               >
-                <p className="text-verdedottclaro m-0 px-4 categoryHover">
-                  {category}
-                </p>
+                <p className="text-verdedottclaro m-0 px-4">{category}</p>
               </Link>
             </div>
           ) : (

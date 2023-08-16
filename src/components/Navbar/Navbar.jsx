@@ -54,7 +54,7 @@ const Navbar = () => {
           DottPC
         </Link>
         <div
-          className="agrandarContainerFlex mostrar"
+          className="mostrar flex-fill justify-content-end me-2"
           style={{ display: "none" }}
         >
           <Link
@@ -145,7 +145,7 @@ const Navbar = () => {
             onSubmit={handleSubmit}
           >
             <input
-              className="me-2 custom-input rounded-3 aumentarTamañoResponsive"
+              className="me-2 custom-input rounded-3 w-100"
               type="text"
               placeholder="Buscar producto"
               aria-label="Buscar producto"

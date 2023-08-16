@@ -63,83 +63,107 @@ p {
   border: 1px #142617 solid;
 }
 
-@media (max-width: 450px) {
-  .agregarMargin {
-    margin-top: 2rem;
+// @media (max-width: 450px) {
+//   .agregarMargin {
+//     margin-top: 2rem;
+//   }
+
+//   .ocultar {
+//     display: none !important;
+//   }
+
+//   .separarData {
+//     margin-left: 0 !important;
+//     margin-right: 0 !important;
+//   }
+
+//   .achicarLetra {
+//     font-size: 1rem !important;
+//   }
+
+//   .cardPipina {
+//     width: 10rem !important;
+//   }
+
+//   .btnPipino {
+//     width: 4rem !important;
+//     height: 3rem !important;
+//   }
+
+//   .cardLetraChica {
+//     font-size: 0.7rem !important;
+//   }
+
+//   .cardLetraMediana {
+//     font-size: 0.9rem !important;
+//   }
+
+//   .mostrar {
+//     display: block !important;
+//   }
+
+//   .ocultar {
+//     display: none;
+//   }
+
+//   .agrandarPantalla {
+//     width: 90% !important;
+//   }
+
+//   .responsiveNavbar {
+//     width: 100% !important;
+//   }
+
+//   .cartCardResponsive {
+//     flex-wrap: wrap;
+//     max-height: none !important;
+//   }
+
+//   .aumentarTamañoResponsive {
+//     width: 100% !important;
+//   }
+
+//   .convertirColumna {
+//     flex-direction: column;
+//   }
+
+//   .btnCartContainerResponsive {
+//     display: flex;
+//     margin-right: 1rem;
+//     justify-content: flex-end;
+//   }
+
+//   .agrandarContainerFlex {
+//     display: flex;
+//     flex-grow: 1;
+//     align-items: center;
+//   }
+// }
+
+@media (max-width: 990px) {
+  .mostrar {
+    display: flex !important;
   }
 
   .ocultar {
     display: none !important;
   }
 
-  .separarData {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+  .sizingResponsive {
+    width: 290px !important;
   }
 
-  .achicarLetra {
-    font-size: 1rem !important;
+  .addMarginTop {
+    margin-top: 1.2rem;
   }
+}
 
-  .cardPipina {
-    width: 10rem !important;
-  }
-
-  .btnPipino {
-    width: 4rem !important;
-    height: 3rem !important;
-  }
-
-  .cardLetraChica {
-    font-size: 0.7rem !important;
-  }
-
-  .cardLetraMediana {
-    font-size: 0.9rem !important;
-  }
-
-  .mostrar {
-    display: block !important;
-  }
-
-  .ocultar {
-    display: none;
-  }
-
-  .agrandarPantalla {
-    width: 90% !important;
-  }
-
-  .responsiveNavbar {
-    width: 100% !important;
-  }
-
-  .cartCardResponsive {
-    flex-wrap: wrap;
-    max-height: none !important;
-  }
-
-  .aumentarTamañoResponsive {
-    width: 100% !important;
-  }
-
-  .convertirColumna {
+@media (max-width: 610px) {
+  .makeColumn {
     flex-direction: column;
   }
 
-  .btnCartContainerResponsive {
-    display: flex;
-    margin-right: 1rem;
-    justify-content: flex-end;
-  }
-
-  .agrandarContainerFlex {
-    display: flex;
-    flex-grow: 1;
-    align-items: center;
-  }
-
-  .manageGrowResponsive {
-    flex-grow: 0 !important;
+  .addMarginTop {
+    margin-top: 1.2rem;
   }
 }

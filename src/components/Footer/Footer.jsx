@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="d-flex flex-wrap justify-content-around bg-fondoOscuro py-3 mt-3">
+    <div className="d-flex flex-wrap justify-content-around bg-fondoOscuro py-3 mt-3 makeColumn">
       <div className="d-flex flex-column align-items-center">
         <div className="fw-bold">
           <p>ATENCIÓN AL CLIENTE:</p>
@@ -13,8 +13,8 @@ const Footer = () => {
           <p className="m-0">Lunes a Viernes de 8 a 18hs.</p>
         </div>
       </div>
-      <div className="d-flex flex-column align-items-center justify-content-around">
-        <div className="fw-bold agregarMargin">
+      <div className="d-flex flex-column align-items-center justify-content-around addMarginTop">
+        <div className="fw-bold">
           <p>RETIRO DE PEDIDOS:</p>
         </div>
         <div className="d-flex mb-3">

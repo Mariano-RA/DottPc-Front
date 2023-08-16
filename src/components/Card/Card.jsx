@@ -58,7 +58,7 @@ export const Card = ({ product }) => {
 
   return (
     <div
-      className="card mx-2 mb-2 bg-fondoClaro cardPipina"
+      className="card mx-2 mb-2 bg-fondoClaro"
       style={{ width: "15em", minHeight: "15rem" }}
     >
       <div className="card-header d-flex p-0 justify-content-center">
@@ -68,14 +68,14 @@ export const Card = ({ product }) => {
       <div className="card-body">
         <div className="d-flex flex-column justify-content-between">
           <p
-            className="card-title fw-bold d-flex justify-content-center align-items-center text-center cardLetraChica"
+            className="card-title fw-bold d-flex justify-content-center align-items-center text-center "
             style={{ height: "5rem" }}
           >
             {product.producto}
           </p>
           <div className="card-text text-center">
-            <p className="m-0 p-0 cardLetraMediana">Precio en Efectivo: </p>
-            <p className="cardLetraMediana">$ {product.precioEfectivo}</p>
+            <p className="m-0 p-0 ">Precio en Efectivo: </p>
+            <p className="">$ {product.precioEfectivo}</p>
           </div>
         </div>
 
@@ -83,7 +83,7 @@ export const Card = ({ product }) => {
           <div className="d-flex justify-content-evenly">
             {!IsSelected ? (
               <button
-                className="btn btn-outline-verdedottclaro btnPipino"
+                className="btn btn-outline-verdedottclaro "
                 type="button"
                 id="btn_cart"
                 onClick={() => handleCart()}
@@ -102,7 +102,7 @@ export const Card = ({ product }) => {
               </button>
             ) : (
               <button
-                className="btn btn-outline-rojodott btnPipino"
+                className="btn btn-outline-rojodott "
                 type="button"
                 id="btn_cart"
                 onClick={() => handleCart()}
@@ -121,7 +121,7 @@ export const Card = ({ product }) => {
               </button>
             )}
             <button
-              className="btn btn-outline-verdedottclaro cardLetraChica btnPipino"
+              className="btn btn-outline-verdedottclaro  "
               type="button"
               data-bs-toggle="collapse"
               data-bs-target={"#collapse_" + product.id}
@@ -140,34 +140,29 @@ export const Card = ({ product }) => {
                 >
                   <div className="ocultar d-flex w-100">
                     <div className="d-flex flex-column w-100 ">
-                      <p className="m-0 p-0 cardLetraMediana fw-bold">Total:</p>
-                      <p className="m-0 p-0 cardLetraMediana fw-bold">
+                      <p className="m-0 p-0  fw-bold">Total:</p>
+                      <p className="m-0 p-0  fw-bold">
                         {tipoCuota.CantidadCuotas} de:
                       </p>
                     </div>
                     <div className="d-flex flex-column align-items-end w-100">
-                      <p className="m-0 p-0 cardLetraMediana">
-                        $ {tipoCuota.Total}
-                      </p>
-                      <p className="m-0 p-0 cardLetraMediana">
-                        $ {tipoCuota.Cuota}
-                      </p>
+                      <p className="m-0 p-0 ">$ {tipoCuota.Total}</p>
+                      <p className="m-0 p-0 ">$ {tipoCuota.Cuota}</p>
                     </div>
                   </div>
-                  <div className="mostrar" style={{ display: "none" }}>
+                  <div
+                    className="mostrar w-100 justify-content-between"
+                    style={{ display: "none" }}
+                  >
                     <div className="d-flex flex-column w-100">
-                      <p className="m-0 p-0 cardLetraMediana fw-bold">Total:</p>
-                      <p className="m-0 p-0 cardLetraMediana">
-                        $ {tipoCuota.Total}
-                      </p>
+                      <p className="m-0 p-0  fw-bold">Total:</p>
+                      <p className="m-0 p-0 ">$ {tipoCuota.Total}</p>
                     </div>
                     <div className="d-flex flex-column w-100">
-                      <p className="m-0 p-0 cardLetraMediana fw-bold">
+                      <p className="m-0 p-0  fw-bold">
                         {tipoCuota.CantidadCuotas} de:
                       </p>
-                      <p className="m-0 p-0 cardLetraMediana">
-                        $ {tipoCuota.Cuota}
-                      </p>
+                      <p className="m-0 p-0 ">$ {tipoCuota.Cuota}</p>
                     </div>
                   </div>
                 </div>

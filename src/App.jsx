@@ -20,10 +20,7 @@ function App() {
         <Navbar />
       </div>
 
-      <div
-        className="d-flex justify-content-center m-auto mt-5 agrandarPantalla"
-        style={{ width: "75%" }}
-      >
+      <div className="d-flex justify-content-center mx-3 mt-5">
         <Outlet />
       </div>
 
