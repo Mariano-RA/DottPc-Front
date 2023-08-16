@@ -83,7 +83,7 @@ export const Card = ({ product }) => {
           <div className="d-flex justify-content-evenly">
             {!IsSelected ? (
               <button
-                className="btn btn-outline-verdedottclaro"
+                className="btn btn-outline-verdedottclaro btnPipino"
                 type="button"
                 id="btn_cart"
                 onClick={() => handleCart()}
@@ -102,7 +102,7 @@ export const Card = ({ product }) => {
               </button>
             ) : (
               <button
-                className="btn btn-outline-rojodott"
+                className="btn btn-outline-rojodott btnPipino"
                 type="button"
                 id="btn_cart"
                 onClick={() => handleCart()}
@@ -121,14 +121,14 @@ export const Card = ({ product }) => {
               </button>
             )}
             <button
-              className="btn btn-outline-verdedottclaro cardLetraMediana"
+              className="btn btn-outline-verdedottclaro cardLetraChica btnPipino"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target={"#collapse_" + product.id}
               aria-expanded="false"
               id="btn_collapse"
             >
-              Ver mas info
+              Cuotas
             </button>
           </div>
           <div className="collapse" id={"collapse_" + product.id}>

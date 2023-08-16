@@ -1,11 +1,6 @@
-// Custom.scss
-// Option A: Include all of Bootstrap
-
-// Include any default variable overrides here (though functions won't be available)
-
+@use "sass:math";
 @import "../node_modules/bootstrap/scss/functions";
 @import "../node_modules/bootstrap/scss/variables";
-/* Standard bootstrap imports */
 
 $custom-colors: (
   "verdedott": #142617,
@@ -16,24 +11,52 @@ $custom-colors: (
 );
 $theme-colors: map-merge($theme-colors, $custom-colors);
 
-$input-color: #386b41 !important;
-$input-border-color: var($input-color) !important;
+// $input-color: #386b41 !important;
+// $input-border-color: var($input-color) !important;
 
-$input-focus-border-color: tint-color(#386b41, 50%);
-$input-focus-color: #386b41 !important;
-$input-focus-box-shadow: 0 1px 1px #286d35 inset, 0 0 8px #286d35 !important;
+// $input-focus-border-color: tint-color(#386b41, 50%);
+// $input-focus-color: #386b41 !important;
+// $input-focus-box-shadow: 0 1px 1px #286d35 inset, 0 0 8px #286d35 !important;
 
-$input-placeholder-color: #386b41 !important;
-$input-plaintext-color: #386b41 !important;
+// $input-placeholder-color: #386b41 !important;
+// $input-plaintext-color: #386b41 !important;
+
+// Definición de las variables
+$input-custom-color: #386b41;
+
+.custom-input {
+  // Estilos generales del input
+  background-color: white;
+  border: 1px solid $input-custom-color;
+  color: $input-custom-color;
+  padding: 10px;
+  transition: border-color 0.3s ease-in-out;
+
+  &::placeholder {
+    color: $input-custom-color;
+  }
+
+  &:focus {
+    // border-color: tint-color(#386b41, $representation);
+    border-color: tint-color(#386b41, math.abs(50%));
+    box-shadow: 0 1px 1px #286d35 inset, 0 0 8px #286d35;
+    outline: none;
+  }
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+  color: #fff !important;
+  background-color: #142617 !important;
+}
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-p {
-  color: #142617 !important;
-}
-
 body {
   background-color: #f4f4f6;
+}
+p {
+  color: #142617 !important;
 }
 
 .borderCategory {
@@ -62,6 +85,11 @@ body {
     width: 10rem !important;
   }
 
+  .btnPipino {
+    width: 4rem !important;
+    height: 3rem !important;
+  }
+
   .cardLetraChica {
     font-size: 0.7rem !important;
   }
@@ -73,11 +101,29 @@ body {
   .mostrar {
     display: block !important;
   }
+
   .ocultar {
     display: none;
   }
 
   .agrandarPantalla {
     width: 90% !important;
+  }
+
+  .responsiveNavbar {
+    width: 100% !important;
+  }
+
+  .cartCardResponsive {
+    flex-wrap: wrap;
+    max-height: none !important;
+  }
+
+  .aumentarTamañoResponsive {
+    width: 100% !important;
+  }
+
+  .convertirColumna {
+    flex-direction: column;
   }
 }

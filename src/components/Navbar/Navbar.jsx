@@ -4,16 +4,34 @@ import { ContextGlobal } from "../utils/global.context";
 
 const Navbar = () => {
   const [keywords, setKeywords] = useState("");
-
+  const [IsHovered, setIsHovered] = useState(false);
+  const [notification, setNotification] = useState(false);
   const { state } = useContext(ContextGlobal);
   const [categorys, setCategorys] = useState([]);
+
+  const handleHover = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   function handleCategorys() {
     setCategorys(state.data);
   }
 
+  function handleCart() {
+    if (state.productCart.length > 0) {
+      setNotification(true);
+    } else {
+      setNotification(false);
+    }
+  }
+
   useEffect(() => {
     handleCategorys();
+    handleCart();
   }, [state]);
 
   const navigate = useNavigate();
@@ -43,7 +61,10 @@ const Navbar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          className="collapse navbar-collapse justify-content-between"
+          id="navbarSupportedContent"
+        >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item dropdown">
               <a
@@ -81,28 +102,54 @@ const Navbar = () => {
                 Productos
               </Link>
             </li>
-            <li className="nav-item">
+          </ul>
+          <div className="d-flex justify-content-between w-75 responsiveNavbar">
+            <form
+              className="d-flex ms-5 separarData"
+              role="search"
+              onSubmit={handleSubmit}
+            >
+              <input
+                className="me-2 custom-input rounded-3"
+                type="text"
+                placeholder="Buscar producto"
+                aria-label="Buscar producto"
+                onChange={handleInputChange}
+              />
+              <button className="btn btn-outline-verdedottclaro" type="submit">
+                Buscar
+              </button>
+            </form>
+            <div className="d-flex align-items-center">
               <Link
-                className="nav-link active text-verdedott"
+                className="nav-link active text-verdedott position-relative"
                 aria-current="page"
                 to={"/cart"}
               >
-                Carrito
+                <button
+                  type="button"
+                  className="btn btn-outline-verdedottclaro position-relative"
+                  onMouseEnter={handleHover}
+                  onMouseLeave={handleMouseLeave}
+                >
+                  <img
+                    src={
+                      IsHovered
+                        ? "/icons/shop-cart-hover.png"
+                        : "/icons/shop-cart.png"
+                    }
+                    style={{ width: "30px" }}
+                    alt=""
+                  />
+                  {notification && (
+                    <span className="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                      <span className="visually-hidden">New alerts</span>
+                    </span>
+                  )}
+                </button>
               </Link>
-            </li>
-          </ul>
-          <form className="d-flex" role="search" onSubmit={handleSubmit}>
-            <input
-              className="form-control me-2 inputdott"
-              type="text"
-              placeholder="Buscar producto"
-              aria-label="Buscar producto"
-              onChange={handleInputChange}
-            />
-            <button className="btn btn-outline-verdedottclaro" type="submit">
-              Buscar
-            </button>
-          </form>
+            </div>
+          </div>
         </div>
       </div>
     </nav>
