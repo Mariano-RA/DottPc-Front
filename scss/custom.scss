@@ -149,16 +149,15 @@ p {
     display: none !important;
   }
 
-  .sizingResponsive {
-    width: 290px !important;
-  }
-
   .addMarginTop {
     margin-top: 1.2rem;
   }
 }
 
 @media (max-width: 610px) {
+  .sizingResponsive {
+    width: 350px !important;
+  }
   .makeColumn {
     flex-direction: column;
   }
