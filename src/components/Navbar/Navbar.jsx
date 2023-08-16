@@ -50,6 +50,38 @@ const Navbar = () => {
         <Link className="navbar-brand text-verdedott" to={"/home"}>
           DottPC
         </Link>
+        <div
+          className="d-flex align-items-center agrandarContainerFlex mostrar"
+          style={{ display: "none" }}
+        >
+          <Link
+            className="nav-link active text-verdedott position-relative btnCartContainerResponsive"
+            aria-current="page"
+            to={"/cart"}
+          >
+            <button
+              type="button"
+              className="btn btn-outline-verdedottclaro position-relative"
+              onMouseEnter={handleHover}
+              onMouseLeave={handleMouseLeave}
+            >
+              <img
+                src={
+                  IsHovered
+                    ? "/icons/shop-cart-hover.png"
+                    : "/icons/shop-cart.png"
+                }
+                style={{ width: "30px" }}
+                alt=""
+              />
+              {notification && (
+                <span className="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                  <span className="visually-hidden">New alerts</span>
+                </span>
+              )}
+            </button>
+          </Link>
+        </div>
         <button
           className="navbar-toggler"
           type="button"
@@ -65,7 +97,7 @@ const Navbar = () => {
           className="collapse navbar-collapse justify-content-between"
           id="navbarSupportedContent"
         >
-          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+          <ul className="navbar-nav mb-2 mb-lg-0">
             <li className="nav-item dropdown">
               <a
                 className="nav-link dropdown-toggle active text-verdedott"
@@ -103,52 +135,51 @@ const Navbar = () => {
               </Link>
             </li>
           </ul>
-          <div className="d-flex justify-content-between w-75 responsiveNavbar">
-            <form
-              className="d-flex ms-5 separarData"
-              role="search"
-              onSubmit={handleSubmit}
+
+          <form
+            className="d-flex separarData justify-content-between"
+            role="search"
+            onSubmit={handleSubmit}
+          >
+            <input
+              className="me-2 custom-input rounded-3 aumentarTamañoResponsive"
+              type="text"
+              placeholder="Buscar producto"
+              aria-label="Buscar producto"
+              onChange={handleInputChange}
+            />
+            <button className="btn btn-outline-verdedottclaro" type="submit">
+              Buscar
+            </button>
+          </form>
+          <div className="d-flex align-items-center ocultar">
+            <Link
+              className="nav-link active text-verdedott position-relative"
+              aria-current="page"
+              to={"/cart"}
             >
-              <input
-                className="me-2 custom-input rounded-3"
-                type="text"
-                placeholder="Buscar producto"
-                aria-label="Buscar producto"
-                onChange={handleInputChange}
-              />
-              <button className="btn btn-outline-verdedottclaro" type="submit">
-                Buscar
-              </button>
-            </form>
-            <div className="d-flex align-items-center">
-              <Link
-                className="nav-link active text-verdedott position-relative"
-                aria-current="page"
-                to={"/cart"}
+              <button
+                type="button"
+                className="btn btn-outline-verdedottclaro position-relative"
+                onMouseEnter={handleHover}
+                onMouseLeave={handleMouseLeave}
               >
-                <button
-                  type="button"
-                  className="btn btn-outline-verdedottclaro position-relative"
-                  onMouseEnter={handleHover}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <img
-                    src={
-                      IsHovered
-                        ? "/icons/shop-cart-hover.png"
-                        : "/icons/shop-cart.png"
-                    }
-                    style={{ width: "30px" }}
-                    alt=""
-                  />
-                  {notification && (
-                    <span className="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
-                      <span className="visually-hidden">New alerts</span>
-                    </span>
-                  )}
-                </button>
-              </Link>
-            </div>
+                <img
+                  src={
+                    IsHovered
+                      ? "/icons/shop-cart-hover.png"
+                      : "/icons/shop-cart.png"
+                  }
+                  style={{ width: "30px" }}
+                  alt=""
+                />
+                {notification && (
+                  <span className="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle">
+                    <span className="visually-hidden">New alerts</span>
+                  </span>
+                )}
+              </button>
+            </Link>
           </div>
         </div>
       </div>

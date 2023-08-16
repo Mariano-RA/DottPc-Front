@@ -126,4 +126,14 @@ p {
   .convertirColumna {
     flex-direction: column;
   }
+
+  .btnCartContainerResponsive {
+    display: flex;
+    margin-right: 1rem;
+    justify-content: flex-end;
+  }
+
+  .agrandarContainerFlex {
+    flex-grow: 1;
+  }
 }
