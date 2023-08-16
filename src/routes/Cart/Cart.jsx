@@ -8,15 +8,24 @@ const Cart = () => {
   const [products, setProducts] = useState([]);
   const [totalCart, setTotalCart] = useState(0);
   const [arrSubtotal, setArrSubtotal] = useState([]);
+  const [valorCuota, setValorCuota] = useState([]);
 
   function handleCart() {
     setProducts(state.productCart);
+  }
+
+  function handleValorCuota() {
+    setValorCuota(state.valorCuotas);
   }
 
   function handleRemoveFromCart(productId) {
     const updatedSubtotals = arrSubtotal.filter((sub) => sub.id !== productId);
     setArrSubtotal(updatedSubtotals);
   }
+
+  const calcularCuota = (precio, interes, cuota) => {
+    return Math.round(precio / interes / cuota);
+  };
 
   function handleSubtotal(data) {
     if (!arrSubtotal.find((prod) => prod.id === data.id)) {
@@ -40,6 +49,7 @@ const Cart = () => {
 
   useEffect(() => {
     handleCart();
+    handleValorCuota();
   }, [state]);
 
   useEffect(() => {
@@ -68,11 +78,27 @@ const Cart = () => {
           ))}
         </div>
         <div
-          className="d-flex flex-column border border-verdedott rounded-3 p-4"
+          className="d-flex flex-column border border-verdedott rounded-3"
           style={{ height: "fit-content" }}
         >
-          <p className="fs-4 fw-bold">Total:</p>
-          <p className="fw-bold fs-4 text-verdedottclaro">${totalCart}</p>
+          <div className="px-3 py-2">
+            <p className="fs-5 ">Total:</p>
+            <p className="fw-bold fs-4 text-verdedottclaro">${totalCart}</p>
+          </div>
+          {valorCuota.map((cuota, index) => (
+            <div
+              key={cuota.id}
+              className="border-top border-verdedott px-3 py-2"
+            >
+              <p className="fs-6">{cuota.id} cuotas de:</p>
+              <p
+                className="fw-bold text-verdedottclaro p-0 m-0"
+                style={{ fontSize: "1.1rem" }}
+              >
+                ${calcularCuota(totalCart, cuota.valorTarjeta, cuota.id)}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

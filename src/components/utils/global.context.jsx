@@ -1,6 +1,6 @@
 import { createContext, useReducer, useMemo, useEffect } from "react";
 
-export const initialState = { data: [], productCart: [] };
+export const initialState = { data: [], productCart: [], valorCuotas: [] };
 
 export const ContextGlobal = createContext(undefined);
 
@@ -22,6 +22,12 @@ function reducer(state, action) {
         productCart: state.productCart.filter(
           (item) => item.id !== action.payload
         ),
+      };
+
+    case "set_valorCuota":
+      return {
+        ...state,
+        valorCuotas: action.data,
       };
     case "set_state":
       return action.state; // Para inicializar el estado desde el Local Storage
@@ -56,6 +62,19 @@ export const ContextProvider = ({ children }) => {
       }
     };
     getData();
+  }, []);
+
+  useEffect(() => {
+    const getValorCuotas = async () => {
+      try {
+        const response = await fetch("./api/cuota/");
+        const data = await response.json();
+        dispatch({ type: "set_valorCuota", data });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    getValorCuotas();
   }, []);
 
   const addCart = (item) => {
