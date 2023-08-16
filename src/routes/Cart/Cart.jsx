@@ -64,7 +64,10 @@ const Cart = () => {
         </p>
       </div>
       <div className="d-flex justify-content-between convertirColumna">
-        <div className="d-flex flex-column">
+        <div
+          className="d-flex flex-column manageGrowResponsive"
+          style={{ flexGrow: "0.5" }}
+        >
           {products.map((item, index) => (
             <div key={item.id}>
               {index == 0 ? <hr className="text-verdedott fs-4" /> : ""}
