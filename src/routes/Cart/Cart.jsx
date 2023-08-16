@@ -78,7 +78,7 @@ const Cart = () => {
           ))}
         </div>
         <div
-          className="d-flex flex-column border border-verdedott rounded-3"
+          className="d-flex flex-column border border-verdedott rounded-3 mt-3"
           style={{ height: "fit-content" }}
         >
           <div className="px-3 py-2">
