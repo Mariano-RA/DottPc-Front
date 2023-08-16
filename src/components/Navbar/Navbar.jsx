@@ -37,7 +37,9 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   function handleSubmit() {
-    navigate(`/list/keywords/${keywords}`);
+    if (keywords.length > 0 && keywords != "") {
+      navigate(`/list/keywords/${keywords}`);
+    }
   }
 
   const handleInputChange = (e) => {
