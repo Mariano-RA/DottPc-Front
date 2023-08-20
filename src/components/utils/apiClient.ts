@@ -1,0 +1,29 @@
+import axios, { AxiosRequestConfig } from "axios";
+
+// const apiServerUrl = import.meta.env.VITE_APP_API_SERVER_URL; // Reemplaza con tu URL de servidor
+const apiServerUrl = import.meta.env.VITE_APP_AUTH0_AUDIENCE;
+
+export const getProtectedResource = async (accessToken: string) => {
+  const config: AxiosRequestConfig = {
+    url: `./api/cuota`,
+    method: "GET",
+    headers: {
+      "content-type": "application/json",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+
+  try {
+    const response = await axios(config);
+    const { data } = response;
+    return {
+      data,
+      error: null,
+    };
+  } catch (error) {
+    return {
+      data: null,
+      error,
+    };
+  }
+};

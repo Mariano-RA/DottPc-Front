@@ -1,6 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ContextGlobal } from "../utils/global.context";
+import LoginButton from "../Login/LoginButton";
+import { LogoutButton } from "../Login/LogoutButton";
+import Profile from "../Login/Profile";
 
 const Navbar = () => {
   const [keywords, setKeywords] = useState("");
@@ -183,6 +186,11 @@ const Navbar = () => {
                 )}
               </button>
             </Link>
+          </div>
+          <div className="d-flex justify-content-between">
+            <LoginButton />
+            <LogoutButton />
+            <Profile />
           </div>
         </div>
       </div>
