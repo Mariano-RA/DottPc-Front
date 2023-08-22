@@ -59,7 +59,7 @@ export const Card = ({ product }) => {
   return (
     <div
       className="card mx-2 mb-2 bg-fondoClaro"
-      style={{ width: "15em", minHeight: "15rem" }}
+      style={{ width: "13em", minHeight: "15rem" }}
     >
       <div className="card-header d-flex p-0 justify-content-center">
         <p className="m-0 pe-2">Proveedor:</p>

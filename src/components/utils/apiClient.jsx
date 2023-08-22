@@ -1,12 +1,12 @@
 import React from "react";
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 
 // const apiServerUrl = import.meta.env.VITE_APP_API_SERVER_URL; // Reemplaza con tu URL de servidor
-const apiServerUrl = import.meta.env.VITE_APP_AUTH0_AUDIENCE;
+const apiUrl = import.meta.env.VITE_APP_API_SERVER_URL;
 
 export default async function getProtectedResource(accessToken) {
-  const config: AxiosRequestConfig = {
-    url: `./api/cuota`,
+  const config = {
+    url: `${apiUrl}/api/cuota`,
     method: "GET",
     headers: {
       "content-type": "application/json",

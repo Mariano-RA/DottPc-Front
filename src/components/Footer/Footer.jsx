@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="d-flex flex-wrap justify-content-around bg-fondoOscuro py-3 mt-3 makeColumn">
+    <div className="d-flex flex-wrap justify-content-around bg-fondoOscuro py-3 mt-3 makeColumn w-100">
       <div className="d-flex flex-column align-items-center">
         <div className="fw-bold">
           <p>ATENCIÓN AL CLIENTE:</p>

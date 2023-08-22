@@ -17,7 +17,11 @@ const LoginButton = () => {
 
   return (
     !isAuthenticated && (
-      <button className="button__login" onClick={handleLogin}>
+      <button
+        className="btn btn-outline-verdedottclaro"
+        style={{ height: "35px" }}
+        onClick={handleLogin}
+      >
         Log In
       </button>
     )

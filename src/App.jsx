@@ -13,14 +13,15 @@ function App() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
+        alignItems: "center",
         height: "100vh",
       }}
     >
-      <div className="mb-5">
+      <div style={{ marginBottom: "100px" }}>
         <Navbar />
       </div>
 
-      <div className="d-flex justify-content-center mx-3 mt-5">
+      <div className="d-flex flex-fill justify-content-center mx-5">
         <Outlet />
       </div>
 

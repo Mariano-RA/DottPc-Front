@@ -57,8 +57,8 @@ const Cart = () => {
   }, [arrSubtotal, setTotalCart]);
 
   return (
-    <div className="w-100">
-      <div className="my-3 pb-3">
+    <div className="d-flex w-100 justify-content-around">
+      <div className="pb-3">
         <p className="fw-bold fs-3 text-verdeoscurodott m-0 p-0">
           Productos en el carrito:
         </p>
