@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Card } from "../../components/Card/Card";
 import Pagination from "../../components/Pagination/Pagination";
 import Categorys from "../../components/Category/Categorys";
-
-const apiServerUrl = import.meta.env.VITE_APP_API_SERVER_URL;
+import { ContextGlobal } from "../../components/utils/global.context";
 
 const List = () => {
   const { id, keyword } = useParams();
+  const { state } = useContext(ContextGlobal);
 
   const [productList, setProductList] = useState([]);
   const [pagina, setPagination] = useState(1);
@@ -60,6 +60,7 @@ const List = () => {
     const resp = await fetch(
       `${apiServerUrl}/api/productos?&skip=${pagina}&take=20&orderBy=${orderBy}`
     );
+
     const data = await resp.json();
     setProductList(data);
     handleLoading(false);
@@ -98,7 +99,7 @@ const List = () => {
   useEffect(() => {
     if (id != null && id != undefined) {
       getProductListByCategory();
-    } else if (keyword != null && keyword != undefined) {
+    } else if (keyword != null && keyword != undefined && keyword != "") {
       getProductListByKeywords();
     } else {
       getProductList();
@@ -106,29 +107,15 @@ const List = () => {
   }, [pagina, id, keyword, orderBy]);
 
   return (
-    <div className="w-100 d-flex">
+    <div className="w-100 d-flex mt-3">
       <Categorys />
-
-      <div
-        className="w-100 d-flex justify-content-center"
-        style={{ height: "fit-content", marginTop: "25%" }}
-        id="loader"
-      >
-        <div
-          className="spinner-border text-verdeoscurodott"
-          style={{ width: "3rem", height: "3rem" }}
-          role="status"
-        >
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
 
       <div
         className="d-flex flex-wrap justify-content-center w-100"
         id="productsGrid"
       >
         <div
-          className="dropdown w-100 d-flex justify-content-between mx-5 mb-3 "
+          className="dropdown w-100 d-flex justify-content-between mb-3 "
           style={{ height: "50px" }}
         >
           <div className="d-flex align-items-center">
@@ -189,16 +176,31 @@ const List = () => {
             </p>
           </div>
         </div>
-        {productList.map((product, index) => (
-          <Card key={index} product={product} />
-        ))}
-        <div className="d-flex w-100 justify-content-center">
-          {productList.length == 20 && (
-            <Pagination
-              parametrosPaginado={handlePagination}
-              paginaActual={pagina}
-            />
-          )}
+        <div
+          className="w-100 h-100 mt-5 d-flex justify-content-center align-items-start flex-fill"
+          style={{ height: "fit-content" }}
+          id="loader"
+        >
+          <div
+            className="spinner-border text-verdeoscurodott"
+            style={{ width: "3rem", height: "3rem" }}
+            role="status"
+          >
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        <div className="d-flex w-100 flex-wrap">
+          {productList.map((product, index) => (
+            <Card key={index} product={product} />
+          ))}
+          <div className="d-flex w-100 justify-content-center">
+            {productList.length == 20 && (
+              <Pagination
+                parametrosPaginado={handlePagination}
+                paginaActual={pagina}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>

@@ -1,9 +1,15 @@
 import { createContext, useReducer, useMemo, useEffect } from "react";
 
 const apiServerUrl = import.meta.env.VITE_APP_API_SERVER_URL;
-export const initialState = { data: [], productCart: [], valorCuotas: [] };
+export const initialState = {
+  data: [],
+  productCart: [],
+  valorCuotas: [],
+  apiUrl: "",
+};
 
 export const ContextGlobal = createContext(undefined);
+const apiUrl = import.meta.env.VITE_APP_API_SERVER_URL;
 
 function reducer(state, action) {
   switch (action.type) {
@@ -11,6 +17,12 @@ function reducer(state, action) {
       return {
         ...state,
         data: action.data,
+      };
+
+    case "set_apiUrl":
+      return {
+        ...state,
+        apiUrl: action.data,
       };
     case "add_cart":
       return {
@@ -24,7 +36,6 @@ function reducer(state, action) {
           (item) => item.id !== action.payload
         ),
       };
-
     case "set_valorCuota":
       return {
         ...state,
@@ -51,6 +62,11 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     localStorage.setItem("appState", JSON.stringify(state));
   }, [state]);
+
+  useEffect(() => {
+    const apiUrl = import.meta.env.VITE_APP_API_SERVER_URL;
+    dispatch({ type: "set_apiUrl", data: apiUrl });
+  }, []);
 
   useEffect(() => {
     const getData = async () => {

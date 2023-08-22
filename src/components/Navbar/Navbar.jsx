@@ -43,6 +43,8 @@ const Navbar = () => {
     e.preventDefault();
     if (keywords.length > 0 && keywords != "") {
       navigate(`/list/keywords/${keywords}`);
+    } else {
+      navigate(`/list`);
     }
   }
 
@@ -54,7 +56,12 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg bg-fondoOscuro fixed-top py-3">
       <div className="container-fluid">
         <Link className="navbar-brand text-verdedott" to={"/home"}>
-          DottPC
+          <img
+            className="img-fluid rounded-3"
+            src="/logo/dottpc.jpg"
+            alt=""
+            style={{ maxHeight: "55px" }}
+          />
         </Link>
         <div
           className="mostrar flex-fill justify-content-end me-2"
