@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { ContextGlobal } from "../utils/global.context";
 import LoginButton from "../Login/LoginButton";
-import { LogoutButton } from "../Login/LogoutButton";
+
 import Profile from "../Login/Profile";
 
 const Navbar = () => {
@@ -158,9 +158,9 @@ const Navbar = () => {
               Buscar
             </button>
           </form>
-          <div className="d-flex align-items-center ocultar">
+          <div className="d-flex align-items-center">
             <Link
-              className="nav-link active text-verdedott position-relative"
+              className="nav-link active text-verdedott position-relative ocultar me-2"
               aria-current="page"
               to={"/cart"}
             >
@@ -186,11 +186,11 @@ const Navbar = () => {
                 )}
               </button>
             </Link>
-          </div>
-          <div className="d-flex justify-content-between">
-            <LoginButton />
-            <LogoutButton />
-            <Profile />
+            <div className="d-flex justify-content-between align-items-center w-100">
+              <LoginButton />
+
+              <Profile />
+            </div>
           </div>
         </div>
       </div>

@@ -4,6 +4,8 @@ import { Card } from "../../components/Card/Card";
 import Pagination from "../../components/Pagination/Pagination";
 import Categorys from "../../components/Category/Categorys";
 
+const apiServerUrl = import.meta.env.VITE_APP_API_SERVER_URL;
+
 const List = () => {
   const { id, keyword } = useParams();
 
@@ -56,7 +58,7 @@ const List = () => {
   const getProductList = async () => {
     handleLoading(true);
     const resp = await fetch(
-      `./api/productos?&skip=${pagina}&take=20&orderBy=${orderBy}`
+      `${apiServerUrl}/api/productos?&skip=${pagina}&take=20&orderBy=${orderBy}`
     );
     const data = await resp.json();
     setProductList(data);
@@ -66,7 +68,7 @@ const List = () => {
   const getProductListByCategory = async () => {
     handleLoading(true);
     const resp = await fetch(
-      `../api/productos/categoria?category=${id}&skip=${pagina}&take=20&orderBy=${orderBy}`
+      `${apiServerUrl}/api/productos/categoria?category=${id}&skip=${pagina}&take=20&orderBy=${orderBy}`
     );
     const data = await resp.json();
     setProductList(data);
@@ -76,7 +78,7 @@ const List = () => {
   const getProductListByKeywords = async () => {
     handleLoading(true);
     const resp = await fetch(
-      `../../api/productos/buscarPorPalabrasClaves?keywords=${keyword}&skip=${pagina}&take=20&orderBy=${orderBy}`
+      `${apiServerUrl}api/productos/buscarPorPalabrasClaves?keywords=${keyword}&skip=${pagina}&take=20&orderBy=${orderBy}`
     );
     const data = await resp.json();
     setProductList(data);

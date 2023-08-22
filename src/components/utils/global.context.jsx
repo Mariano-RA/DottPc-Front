@@ -1,5 +1,6 @@
 import { createContext, useReducer, useMemo, useEffect } from "react";
 
+const apiServerUrl = import.meta.env.VITE_APP_API_SERVER_URL;
 export const initialState = { data: [], productCart: [], valorCuotas: [] };
 
 export const ContextGlobal = createContext(undefined);
@@ -54,7 +55,9 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     const getData = async () => {
       try {
-        const response = await fetch("./api/productos/categorias");
+        const response = await fetch(
+          `${apiServerUrl}/api/productos/categorias`
+        );
         const data = await response.json();
         dispatch({ type: "set_data", data });
       } catch (error) {
@@ -67,7 +70,7 @@ export const ContextProvider = ({ children }) => {
   useEffect(() => {
     const getValorCuotas = async () => {
       try {
-        const response = await fetch("./api/cuota/");
+        const response = await fetch(`${apiServerUrl}/api/cuota`);
         const data = await response.json();
         dispatch({ type: "set_valorCuota", data });
       } catch (error) {

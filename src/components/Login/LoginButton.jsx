@@ -17,8 +17,11 @@ const LoginButton = () => {
 
   return (
     !isAuthenticated && (
-      <button className="button__login" onClick={handleLogin}>
-        Log In
+      <button
+        className="btn btn-outline-verdedottclaro w-100 d-flex align-items-center"
+        onClick={handleLogin}
+      >
+        Sign in
       </button>
     )
   );

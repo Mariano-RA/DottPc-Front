@@ -1,11 +1,11 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios from "axios";
 
 // const apiServerUrl = import.meta.env.VITE_APP_API_SERVER_URL; // Reemplaza con tu URL de servidor
-const apiServerUrl = import.meta.env.VITE_APP_AUTH0_AUDIENCE;
+const apiServerUrl = import.meta.env.VITE_APP_API_SERVER_URL;
 
-export const getProtectedResource = async (accessToken: string) => {
-  const config: AxiosRequestConfig = {
-    url: `./api/cuota`,
+export const getCuotasTest = async (accessToken) => {
+  const config = {
+    url: `${apiServerUrl}/api/cuota`,
     method: "GET",
     headers: {
       "content-type": "application/json",
