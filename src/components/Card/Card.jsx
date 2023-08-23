@@ -4,10 +4,19 @@ import bootstrapBundleMin from "bootstrap/dist/js/bootstrap.bundle.min";
 import React, { useContext, useEffect, useState } from "react";
 import { ContextGlobal } from "../utils/global.context";
 
+function convertirMoneda(monto) {
+  const formattedCurrency = new Intl.NumberFormat("es-AR", {
+    style: "currency",
+    currency: "ARS",
+  }).format(monto);
+  return formattedCurrency;
+}
+
 export const Card = ({ product }) => {
   const { state, addCart, removeCart } = useContext(ContextGlobal);
   const [IsHovered, setIsHovered] = useState(false);
   const [IsSelected, setIsSelected] = useState(false);
+  const [CuotaIsHovered, setCuotaIsHovered] = useState(false);
 
   const popoverTriggerList = document.querySelectorAll(
     '[data-bs-toggle="popover"]'
@@ -43,9 +52,14 @@ export const Card = ({ product }) => {
   const handleHover = () => {
     setIsHovered(true);
   };
-
   const handleMouseLeave = () => {
     setIsHovered(false);
+  };
+  const handleCuotaHover = () => {
+    setCuotaIsHovered(true);
+  };
+  const handleCuotaMouseLeave = () => {
+    setCuotaIsHovered(false);
   };
 
   useEffect(() => {
@@ -58,12 +72,11 @@ export const Card = ({ product }) => {
 
   return (
     <div
-      className="card mx-2 mb-2 bg-fondoClaro"
-      style={{ width: "13em", minHeight: "15rem" }}
+      className="card mx-2 mb-2 bg-fondoClaro achicarCard"
+      style={{ width: "13rem", minHeight: "15rem" }}
     >
       <div className="card-header d-flex p-0 justify-content-center">
-        <p className="m-0 pe-2">Proveedor:</p>
-        <p className="m-0">{product.proveedor}</p>
+        <p className="m-0 fw-bold">{product.proveedor.toUpperCase()}</p>
       </div>
       <div className="card-body">
         <div className="d-flex flex-column justify-content-between">
@@ -75,7 +88,7 @@ export const Card = ({ product }) => {
           </p>
           <div className="card-text text-center">
             <p className="m-0 p-0 ">Precio en Efectivo: </p>
-            <p className="">$ {product.precioEfectivo}</p>
+            <p className="">{convertirMoneda(product.precioEfectivo)}</p>
           </div>
         </div>
 
@@ -83,7 +96,7 @@ export const Card = ({ product }) => {
           <div className="d-flex justify-content-evenly">
             {!IsSelected ? (
               <button
-                className="btn btn-outline-verdedottclaro "
+                className="btn btn-outline-verdedottclaro  "
                 type="button"
                 id="btn_cart"
                 onClick={() => handleCart()}
@@ -91,6 +104,7 @@ export const Card = ({ product }) => {
                 onMouseLeave={handleMouseLeave}
               >
                 <img
+                  className="img-fluid "
                   src={
                     IsHovered
                       ? "/icons/shop-cart-hover.png"
@@ -102,7 +116,7 @@ export const Card = ({ product }) => {
               </button>
             ) : (
               <button
-                className="btn btn-outline-rojodott "
+                className="btn btn-outline-rojodott"
                 type="button"
                 id="btn_cart"
                 onClick={() => handleCart()}
@@ -110,6 +124,7 @@ export const Card = ({ product }) => {
                 onMouseLeave={handleMouseLeave}
               >
                 <img
+                  className="img-fluid"
                   src={
                     IsHovered
                       ? "/icons/shop-delete-hover.png"
@@ -121,14 +136,25 @@ export const Card = ({ product }) => {
               </button>
             )}
             <button
-              className="btn btn-outline-verdedottclaro  "
+              className="btn btn-outline-verdedottclaro "
               type="button"
               data-bs-toggle="collapse"
               data-bs-target={"#collapse_" + product.id}
               aria-expanded="false"
               id="btn_collapse"
+              onMouseEnter={handleCuotaHover}
+              onMouseLeave={handleCuotaMouseLeave}
             >
-              Cuotas
+              <img
+                className="img-fluid"
+                src={
+                  CuotaIsHovered
+                    ? "/icons/tarjeta-hover.png"
+                    : "/icons/tarjeta.png"
+                }
+                style={{ width: "30px" }}
+                alt=""
+              />
             </button>
           </div>
           <div className="collapse" id={"collapse_" + product.id}>
@@ -136,33 +162,41 @@ export const Card = ({ product }) => {
               {product.precioCuotas.map((tipoCuota) => (
                 <div
                   key={tipoCuota.CantidadCuotas}
-                  className="d-flex border border-success-subtle px-3 py-2 juistify-content-between"
+                  className="d-flex border border-success-subtle px-2 py-2 juistify-content-between"
                 >
                   <div className="ocultar d-flex w-100">
                     <div className="d-flex flex-column w-100 ">
-                      <p className="m-0 p-0  fw-bold">Total:</p>
-                      <p className="m-0 p-0  fw-bold">
+                      <p className="m-0 p-0 fw-bolder achicarLetra">Total:</p>
+                      <p className="m-0 p-0 fw-bolder achicarLetra">
                         {tipoCuota.CantidadCuotas} de:
                       </p>
                     </div>
                     <div className="d-flex flex-column align-items-end w-100">
-                      <p className="m-0 p-0 ">$ {tipoCuota.Total}</p>
-                      <p className="m-0 p-0 ">$ {tipoCuota.Cuota}</p>
+                      <p className="m-0 p-0 achicarLetra">
+                        {convertirMoneda(tipoCuota.Total)}
+                      </p>
+                      <p className="m-0 p-0 achicarLetra">
+                        {convertirMoneda(tipoCuota.Cuota)}
+                      </p>
                     </div>
                   </div>
                   <div
-                    className="mostrar w-100 justify-content-between"
+                    className="mostrar w-100 justify-content-between flex-column"
                     style={{ display: "none" }}
                   >
                     <div className="d-flex flex-column w-100">
-                      <p className="m-0 p-0  fw-bold">Total:</p>
-                      <p className="m-0 p-0 ">$ {tipoCuota.Total}</p>
+                      <p className="m-0 p-0  fw-bolder achicarLetra">Total:</p>
+                      <p className="m-0 pb-1   achicarLetra">
+                        {convertirMoneda(tipoCuota.Total)}
+                      </p>
                     </div>
                     <div className="d-flex flex-column w-100">
-                      <p className="m-0 p-0  fw-bold">
-                        {tipoCuota.CantidadCuotas} de:
+                      <p className="m-0 p-0  fw-bolder achicarLetra">
+                        {tipoCuota.CantidadCuotas} cuotas de:
                       </p>
-                      <p className="m-0 p-0 ">$ {tipoCuota.Cuota}</p>
+                      <p className="m-0 p-0 achicarLetra">
+                        {convertirMoneda(tipoCuota.Cuota)}
+                      </p>
                     </div>
                   </div>
                 </div>

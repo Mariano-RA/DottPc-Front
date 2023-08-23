@@ -11,6 +11,7 @@ import { ContextProvider } from "./components/utils/global.context";
 
 import "../scss/custom.scss";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import Admin from "./routes/Admin/Admin";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -26,6 +27,7 @@ root.render(
             <Route path="/list/keywords/:keyword" element={<List />} />
             <Route path="/category/:id" element={<List />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/admin" element={<Admin />} />
           </Route>
         </Routes>
       </ContextProvider>

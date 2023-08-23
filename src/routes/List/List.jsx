@@ -7,7 +7,7 @@ import { ContextGlobal } from "../../components/utils/global.context";
 
 const List = () => {
   const { id, keyword } = useParams();
-  const { state } = useContext(ContextGlobal);
+  const state = JSON.parse(localStorage.getItem("appState"));
 
   const [productList, setProductList] = useState([]);
   const [pagina, setPagination] = useState(1);
@@ -57,10 +57,10 @@ const List = () => {
 
   const getProductList = async () => {
     handleLoading(true);
-    const resp = await fetch(
-      `${apiServerUrl}/api/productos?&skip=${pagina}&take=20&orderBy=${orderBy}`
-    );
 
+    const resp = await fetch(
+      `${state.apiUrl}/api/productos?&skip=${pagina}&take=20&orderBy=${orderBy}`
+    );
     const data = await resp.json();
     setProductList(data);
     handleLoading(false);
@@ -69,7 +69,7 @@ const List = () => {
   const getProductListByCategory = async () => {
     handleLoading(true);
     const resp = await fetch(
-      `${apiServerUrl}/api/productos/categoria?category=${id}&skip=${pagina}&take=20&orderBy=${orderBy}`
+      `${state.apiUrl}/api/productos/categoria?category=${id}&skip=${pagina}&take=20&orderBy=${orderBy}`
     );
     const data = await resp.json();
     setProductList(data);
@@ -79,7 +79,7 @@ const List = () => {
   const getProductListByKeywords = async () => {
     handleLoading(true);
     const resp = await fetch(
-      `${apiServerUrl}api/productos/buscarPorPalabrasClaves?keywords=${keyword}&skip=${pagina}&take=20&orderBy=${orderBy}`
+      `${state.apiUrl}/api/productos/buscarPorPalabrasClaves?keywords=${keyword}&skip=${pagina}&take=20&orderBy=${orderBy}`
     );
     const data = await resp.json();
     setProductList(data);
@@ -107,23 +107,23 @@ const List = () => {
   }, [pagina, id, keyword, orderBy]);
 
   return (
-    <div className="w-100 d-flex mt-3">
+    <div className="d-flex mt-3 w-100 justify-content-between">
       <Categorys />
 
       <div
-        className="d-flex flex-wrap justify-content-center w-100"
+        className="w-100 d-flex flex-column align-items-center"
         id="productsGrid"
       >
         <div
-          className="dropdown w-100 d-flex justify-content-between mb-3 "
+          className="dropdown w-100 d-flex justify-content-between pt-4 pb-5 contractContainer px-lg-5"
           style={{ height: "50px" }}
         >
-          <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center justify-content-between">
             <p className="fw-bold fs-5 text-verdeoscurodott m-0 p-0 ">
               {id ? id : "Todos los productos"}
             </p>
           </div>
-          <div className="d-flex align-items-center">
+          <div className="d-flex flex-md-row align-items-center justify-content-center flex-column">
             <button
               className="btn btn-outline-verdedottclaro dropdown-toggle"
               type="button"
@@ -189,7 +189,7 @@ const List = () => {
             <span className="visually-hidden">Loading...</span>
           </div>
         </div>
-        <div className="d-flex w-100 flex-wrap">
+        <div className="d-flex w-100 flex-wrap justify-content-center ">
           {productList.map((product, index) => (
             <Card key={index} product={product} />
           ))}

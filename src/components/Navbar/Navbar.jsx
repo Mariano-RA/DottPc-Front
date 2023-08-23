@@ -155,15 +155,25 @@ const Navbar = () => {
             onSubmit={handleSubmit}
           >
             <input
-              className="me-2 custom-input rounded-3 w-100"
+              className="custom-input rounded-3 w-100 flex-fill"
+              style={{ paddingRight: "45px" }}
               type="text"
               placeholder="Buscar producto"
               aria-label="Buscar producto"
               onChange={handleInputChange}
             />
-            <button className="btn btn-outline-verdedottclaro" type="submit">
-              Buscar
-            </button>
+            {/* <button
+              className="btn d-flex align-items-center"
+              type="submit"
+              style={{ position: "relative", right: "45px" }}
+            >
+              <img
+                src="/icons/lupa.png"
+                className="img-fluid"
+                alt=""
+                width={"25px"}
+              />
+            </button> */}
           </form>
           <div className="d-flex align-items-center">
             <Link
@@ -193,7 +203,7 @@ const Navbar = () => {
                 )}
               </button>
             </Link>
-            <div className="d-flex justify-content-between align-items-center w-100">
+            <div className="d-flex justify-content-between align-items-center w-100 pt-lg-0 pt-3">
               <LoginButton />
 
               <Profile />

@@ -52,6 +52,10 @@ p {
   border: 1px #142617 solid;
 }
 
+.achicarLetra {
+  font-size: 0.9rem !important;
+}
+
 @media (max-width: 990px) {
   .mostrar {
     display: flex !important;
@@ -76,5 +80,17 @@ p {
 
   .addMarginTop {
     margin-top: 1.2rem;
+  }
+
+  .achicarCard {
+    width: 11.5rem !important;
+  }
+
+  .expandContainer {
+    width: 100% !important;
+  }
+
+  .contractContainer {
+    width: 75% !important;
   }
 }

@@ -33,10 +33,10 @@ const imagenes = [
 
 const Home = () => {
   return (
-    <div className="w-100 mb-5">
-      <div className="d-flex flex-column align-items-center my-3">
-        <p className="fs-1">Dott PC</p>
-        <p>
+    <div className="d-flex flex-column align-items-center">
+      <div className="d-flex flex-column align-items-center my-3 contractContainer">
+        <p className="display-1 fw-bold">Dott PC</p>
+        <p className="fs-lg-4 fs-sm-6">
           Sumérgete en un mundo de posibilidades infinitas con nuestra exclusiva
           selección de equipos y accesorios gamer. Desde componentes de
           vanguardia hasta periféricos de alto rendimiento, nuestra tienda es el

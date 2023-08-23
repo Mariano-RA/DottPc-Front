@@ -21,7 +21,10 @@ function App() {
         <Navbar />
       </div>
 
-      <div className="d-flex flex-fill justify-content-center mx-5">
+      <div
+        className="d-flex flex-fill justify-content-center expandContainer"
+        style={{ width: "80%" }}
+      >
         <Outlet />
       </div>
 
