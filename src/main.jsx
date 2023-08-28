@@ -9,7 +9,7 @@ import { Auth0ProviderWithNavigate } from "./components/utils/auth0-provider-wit
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ContextProvider } from "./components/utils/global.context";
 
-import "../scss/custom.scss";
+import "./assets/scss/custom.scss";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import Admin from "./routes/Admin/Admin";
 

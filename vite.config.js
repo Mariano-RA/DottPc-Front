@@ -7,4 +7,13 @@ export default defineConfig({
   build: {
     outDir: "client",
   },
+  server: {
+    host: true,
+    strictPort: true,
+    port: 4173,
+  },
+  preview: {
+    host: true,
+    port: 4173,
+  },
 });
